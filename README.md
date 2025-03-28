@@ -4,7 +4,7 @@ Let's learn to build an operator.
 Create a github repo and clone the repo.
 ```sh
 git clone https://github.com/ManojChandran/chowki
-cd go-operator
+cd chowki
 go mod init github.com/ManojChandran/chowki
 go mod tidy
 ```
