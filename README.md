@@ -43,6 +43,7 @@ Our entry point to the operator is `main.go`
 * Scheme, which provides mappings between Kinds and their corresponding Go types.
 * Basic health checks
 
+> Go types: GroupVersion(GV),GroupResource(GR), GroupKind(GK), GroupVersionResource(GVR), GroupVersionKind(GVK)
 ### Kubernetes API
 Determine group/version for our API.
 * Kind - A schema for an object, mapping to a Go type (Capital Letters). 
@@ -129,5 +130,62 @@ make deploy
 ```
 > **Note:** Ensure that the Kubernetes cluster is running and accessible.
 
-## Basic Working
+## Understanding Controller main parts
+### Control loop
+```go
+func (c *Ctrl) worker() {
+  for c.processNextItem(){
+
+  }
+}
+//
+//
+//
+func (c Ctrl) processNextItem(){
+  item := c.queue.get()
+  err := csuncHandler(item)
+  c.handleErr(err, item)
+}
+```
+### Queue
+```go
+queue = workqueue.NewNameRateLimitingQueue(
+  workquqe.DefaultControllerRateLimiter(),
+  "foos"),
+```
+* Shared informers - Shared data cache nd it is distributing the data to all the listeners interested in knowing the changes that are happening to data.
+```go
+porInformer = InformerFactory.Core().V1().Pods()
+```
+### Shared informer - event handler
+```go
+podInformer.Informers - event handler(
+  cache.ResourceEventHandlerFuncs{
+    // react to newly added objects
+    AddFunc: func(obj interface{}) {},
+    // react to update to the object
+    UpdateFunc: func(old, cur interface{}) {},
+    // react to object removal
+    DeleteFunc: func(obj interface{}) {},
+  }
+)
+```
+### Shared informer - listers
+```go
+podstore = podInformer.Lister()
+```
+* Synchandler
+```go
+func (c *Ctrl) syncHandler(key string) error {
+  // Convert into distinct namespace and name
+  ns, name, err := cache.SplitMetaNamespaceKey(key)
+  // Get the object
+  podTmp, err := c.podsLister.Pods(ns).Get(name)
+  // !!! Important !!!
+  pod := podTmp.DeepCopy() // only do if you are modifying the object
+  // .....our logic here ....
+
+  return nil
+}
+```
 ![Alt Text](./img/operator-basic.png)
