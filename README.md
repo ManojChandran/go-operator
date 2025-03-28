@@ -1,5 +1,5 @@
 # go-operator
-Logs all the event changes in a kubernetes namespace, operator is used debug specific issue or study a particular changes done to the cluster namespace.
+Let's learn to build an operator.
 ## Repository
 Create a github repo and clone the repo.
 ```sh
