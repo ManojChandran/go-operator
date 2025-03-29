@@ -232,27 +232,3 @@ make install
 make deploy
 ```
 > **Note:** Ensure that the Kubernetes cluster is running and accessible.
-
-# ______________
-### Shared informers
-Shared data cache and it is distributing the data to all the listeners interested in knowing the changes that are happening to data.
-```go
-porInformer = InformerFactory.Core().V1().Pods()
-```
-### Shared informer - event handler
-```go
-podInformer.Informers - event handler(
-  cache.ResourceEventHandlerFuncs{
-    // react to newly added objects
-    AddFunc: func(obj interface{}) {},
-    // react to update to the object
-    UpdateFunc: func(old, cur interface{}) {},
-    // react to object removal
-    DeleteFunc: func(obj interface{}) {},
-  }
-)
-```
-### Shared informer - listers
-```go
-podstore = podInformer.Lister()
-```
