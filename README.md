@@ -1,5 +1,32 @@
-# go-operator
-Let's learn to build an operator.
+# go-operator  
+Lets deep dive on the Operators in Kubernetes.
+
+### Kubernetes Operator
+It is a custim controller that extends kubernetes capabilities to manage complex applications and automate thier tasks. Operators are clients of the Kubernetes API that act as controllers for a Custom Resource.
+
+### Operator Working
+An Operator adds an endpoint to the kubernets API called a custome resource (CR),  along with a control plane component that monitors and maintain resource of new type.
+
+### Key components of Kubernetes Operator
+1. Custom Resource Definitions (CRDs)
+2. Custom Resource (CR)
+3. Controller
+4. Reconciliation Loop
+5. Role-Based Access Control (RBAC)
+6. Operator Lifecycle Manager (OLM)
+
+### Resource in Kubernetes
+A Resource is an endpoint in the Kubernetes API that stores a collection of API objects of a certain kind.
+
+### Custom Resource
+A Custom Resource is an object that extends the Kubernetes API or allows you to introduce your own API into a project or a cluster.
+
+### Create the custom resourece Object
+Custom resouce objects are created by creating an object from a Custom Resource Definition (CRD).
+
+### CRD
+A CRD stands for Custom Resource Definition, its a file that let us define our own object kinds and lets the API Server handle the entire lifecycle.
+
 ## Repository
 Create a github repo and clone the repo.
 ```sh
@@ -20,7 +47,7 @@ All our launch configurations under the config/ directory and it contains Kustom
 * `config/rbac`    contains a Kustomize base for required permissions to run your controllers under their own service account
 
 ### Makefile
-In addition to the configuration `Makefile` does some heavy lifting for us:
+In addition to the configuration, `Makefile` does some heavy lifting for us:
 * make (Default Target)
 * make run (Run Operator Locally)
 * make manifests (Generate CRDs & RBAC)
