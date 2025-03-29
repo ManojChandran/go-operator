@@ -103,7 +103,7 @@ A Rate Limiter in a Kubernetes controller helps control the number of reconcilia
 ## Custom Controller Architecture
 ![Alt Text](./img/operator-basic.png)
 
-## Repository
+## Lets Create one
 Create a github repo and clone the repo.
 ```sh
 git clone https://github.com/ManojChandran/chowki
