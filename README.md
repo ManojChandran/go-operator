@@ -90,8 +90,17 @@ func (c *Controller) handleObject(obj interface{})
 ```
 * enqueue: Adds new items to the queue when a relevant object changes.
 * handleObject: Reacts to changes in related objects and enqueues them.
-> A Rate Limiter in a Kubernetes controller helps control the number of reconciliation attempts to avoid overwhelming the API server or the managed resources. 
+### Informer
+An Informer in Kubernetes is a key component of the controller pattern. It is responsible for watching Kubernetes resources (like Pods, Deployments, or Custom Resources) and caching their state locally, reducing direct API calls to the Kubernetes API server.
+* List & Watch
+* Cache
+* Event Notification
+* Reconciliation trigger
 
+#### RateLimiter
+A Rate Limiter in a Kubernetes controller helps control the number of reconciliation attempts to avoid overwhelming the API server or the managed resources. 
+
+## Custom Controller Architecture
 ![Alt Text](./img/operator-basic.png)
 
 ## Repository
