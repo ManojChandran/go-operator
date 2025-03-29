@@ -2,7 +2,7 @@
 Lets deep dive on the Operators in Kubernetes.
 
 ### Kubernetes Operator
-It is a custim controller that extends kubernetes capabilities to manage complex applications and automate thier tasks. Operators are clients of the Kubernetes API that act as controllers for a Custom Resource.
+It is a custom controller that extends kubernetes capabilities to manage complex applications and automate thier tasks. Operators are clients of the Kubernetes API that act as controllers for a Custom Resource.
 
 ### Operator Working
 An Operator adds an endpoint to the kubernets API called a custome resource (CR),  along with a control plane component that monitors and maintain resource of new type.
@@ -26,6 +26,73 @@ Custom resouce objects are created by creating an object from a Custom Resource 
 
 ### CRD
 A CRD stands for Custom Resource Definition, its a file that let us define our own object kinds and lets the API Server handle the entire lifecycle.
+
+## Understanding Controller
+Major portion of writng an operator is, writing its controller. Basically a controller works as below,
+1. Start Controller
+2. Watch for changes to Custom Resources (CRs)
+3. Enqueue events (create/update/delete)
+4. Process the queue:
+   a. Fetch the object from the API
+   b. Compare current state with the desired state
+   c. Take corrective action (reconcile)
+5. Repeat
+We can understand controller by reffering to the code given by Kubernetes team (`sample-controller`).
+
+### Sample Controller
+The [Sample Controller](https://github.com/kubernetes/sample-controller) is a Kubernetes Operator example that demonstrates how to write a custom controller using the Kubernetes client-go library.
+### NewController
+* Takes Kubernetes clientset, custom resource clientset, shared informer, and workqueue as inputs.
+* Initializes and returns a new Controller instance.
+```go
+func NewController(
+	kubeclientset kubernetes.Interface, // Communicates with Kubernetes APIs.
+	sampleclientset clientset.Interface, // sampleclientset: Interacts with the custom resource.
+	informer informers.SharedInformerFactory, // informer: Watches changes to the custom resource.
+	workqueue workqueue.RateLimitingInterface, // workqueue: Ensures event processing is handled efficiently.
+) *Controller
+```
+### RUN
+* Starts the controller.
+* Waits for informers to sync.
+* Spins up multiple worker threads to process events.
+```go
+func (c *Controller) Run(threadiness int, stopCh <-chan struct{}) error
+```
+### Control loop
+```go
+func (c *Controller) runWorker(ctx context.Context) {
+  for c.processNextWorkItem(ctx) {
+    }
+}
+```
+```go 
+func (c *Controller) processNextWorkItem() bool {
+  objRef, shutdown := c.workqueue.Get()
+  err := c.syncHandler(ctx, objRef)
+  utilruntime.HandleErrorWithContext(ctx, err, "Error syncing; requeuing for later retry", "objectReference", objRef)
+}
+```
+* Fetches the next item from the queue.
+* Calls the syncHandler function to reconcile.
+* Removes the item from the queue after processing.
+### Synchandler
+```go
+func (c *Ctrl) syncHandler(key string) error {}
+```
+* The core reconciliation logic of the controller.
+* Retrieves the object using its key (namespace/name).
+* Ensures the object is in the correct state.
+### Queue
+```go
+func (c *Controller) enqueue(obj interface{})
+func (c *Controller) handleObject(obj interface{})
+```
+* enqueue: Adds new items to the queue when a relevant object changes.
+* handleObject: Reacts to changes in related objects and enqueues them.
+> A Rate Limiter in a Kubernetes controller helps control the number of reconciliation attempts to avoid overwhelming the API server or the managed resources. 
+
+![Alt Text](./img/operator-basic.png)
 
 ## Repository
 Create a github repo and clone the repo.
@@ -157,30 +224,9 @@ make deploy
 ```
 > **Note:** Ensure that the Kubernetes cluster is running and accessible.
 
-## Understanding Controller main parts
-### Control loop
-```go
-func (c *Ctrl) worker() {
-  for c.processNextItem(){
-
-  }
-}
-//
-//
-//
-func (c Ctrl) processNextItem(){
-  item := c.queue.get()
-  err := csuncHandler(item)
-  c.handleErr(err, item)
-}
-```
-### Queue
-```go
-queue = workqueue.NewNameRateLimitingQueue(
-  workquqe.DefaultControllerRateLimiter(),
-  "foos"),
-```
-* Shared informers - Shared data cache nd it is distributing the data to all the listeners interested in knowing the changes that are happening to data.
+# ______________
+### Shared informers
+Shared data cache and it is distributing the data to all the listeners interested in knowing the changes that are happening to data.
 ```go
 porInformer = InformerFactory.Core().V1().Pods()
 ```
@@ -201,18 +247,3 @@ podInformer.Informers - event handler(
 ```go
 podstore = podInformer.Lister()
 ```
-* Synchandler
-```go
-func (c *Ctrl) syncHandler(key string) error {
-  // Convert into distinct namespace and name
-  ns, name, err := cache.SplitMetaNamespaceKey(key)
-  // Get the object
-  podTmp, err := c.podsLister.Pods(ns).Get(name)
-  // !!! Important !!!
-  pod := podTmp.DeepCopy() // only do if you are modifying the object
-  // .....our logic here ....
-
-  return nil
-}
-```
-![Alt Text](./img/operator-basic.png)
