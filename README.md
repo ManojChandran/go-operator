@@ -121,6 +121,23 @@ Run the init command inside of it to initialize a new project, Init command will
 ```sh
 kubebuilder init --domain  devops.tools --repo devops.tools/controller
 ```
+Will create `api/v1` folder to define the API `spec` and `status`
+```go
+// ChowkiSpec defines the desired state of Chowki.
+type ChowkiSpec struct {
+	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
+	// Important: Run "make" to regenerate code after modifying this file
+
+	// Foo is an example field of Chowki. Edit chowki_types.go to remove/update
+	Foo string `json:"foo,omitempty"`
+}
+
+// ChowkiStatus defines the observed state of Chowki.
+type ChowkiStatus struct {
+	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
+	// Important: Run "make" to regenerate code after modifying this file
+}
+```
 ### config
 All our launch configurations under the config/ directory and it contains Kustomize YAML definitions required to launch our controller on a cluster.
 * `config/default` contains a Kustomize base for launching the controller in a standard configuration.
