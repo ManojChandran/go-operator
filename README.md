@@ -28,7 +28,12 @@ Custom resouce objects are created by creating an object from a Custom Resource 
 A CRD stands for Custom Resource Definition, its a file that let us define our own object kinds and lets the API Server handle the entire lifecycle.
 
 ## Understanding Controller
-Major portion of writng an operator is, writing its controller. Basically a controller works as below,
+Kubernetes controller is a control loop that watches the state of our cluster, then make changes to move the `current state` closer to the `desired state` (Reconciliation loop).
+
+<img src="./img/control-loop.png"  width="60%" height="30%">
+> Important thing in writing up an operator is, how we code the reconciliation loop.
+
+Back bone of an operator is the `controller`. Basically a controller works as below,
 1. Start Controller
 2. Watch for changes to Custom Resources (CRs)
 3. Enqueue events (create/update/delete)
@@ -101,7 +106,7 @@ An Informer in Kubernetes is a key component of the controller pattern. It is re
 A Rate Limiter in a Kubernetes controller helps control the number of reconciliation attempts to avoid overwhelming the API server or the managed resources. 
 
 ## Custom Controller Architecture
-![Alt Text](./img/operator-basic.png)
+<img src="./img/operator-basic.png"  width="60%" height="30%">
 
 ## Lets Create one
 Create a github repo and clone the repo.
