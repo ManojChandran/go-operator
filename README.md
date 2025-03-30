@@ -169,7 +169,8 @@ Build API and for our, run below command.
 ```sh
 kubebuilder create api --group crd --version v1 --kind Chowki
 ```
-This will create API and Controller for our operator. We can see  `api/v1` and `controller` folder created to define the API `spec`, `status` and `reconcile` function..
+This will create API and Controller for our operator. We can see  `api/v1` and `controller` folder created to define the API `spec`, `status` and `reconcile` function.
+Schema:
 ```go
 // ChowkiSpec defines the desired state of Chowki.
 type ChowkiSpec struct {
@@ -184,6 +185,17 @@ type ChowkiSpec struct {
 type ChowkiStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+}
+```
+Reconcile Function:
+```go
+// - https://pkg.go.dev/sigs.k8s.io/controller-runtime@v0.20.2/pkg/reconcile
+func (r *ChowkiReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
+	_ = log.FromContext(ctx)
+
+	// TODO(user): your logic here
+
+	return ctrl.Result{}, nil
 }
 ```
 
