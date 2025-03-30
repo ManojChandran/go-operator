@@ -151,7 +151,7 @@ Our entry point to the operator is `main.go`
 * Scheme, which provides mappings between Kinds and their corresponding Go types.
 * Basic health checks
 
-> Go types: GroupVersion(GV),GroupResource(GR), GroupKind(GK), GroupVersionResource(GVR), GroupVersionKind(GVK)
+> Go types: GroupVersion(GV), GroupResource(GR), GroupKind(GK), GroupVersionResource(GVR), GroupVersionKind(GVK)
 ### Kubernetes API
 Determine group/version for our API.
 * Kind - A schema for an object, mapping to a Go type (Capital Letters). 
