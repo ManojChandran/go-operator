@@ -1,6 +1,18 @@
 # go-operator  
-Lets deep dive on the Operators in Kubernetes.
+We will discuss about Kubernetes Operator
+* Basics
+* Working
+* Echo system
+* Build from scratch
+* Installation
 
+### Kubernetes Core
+* Heart of the kubernetes is a fleet of controllers tacking Kubernetes resources.
+* Kubernetes controller is a control loop that watches the state of our cluster, then make changes to move the `current state` closer to the `desired state`.(Reconciliation loop)
+
+<img src="./img/control-loop.png"  width="60%" height="30%">
+
+> Important thing in writing up an operator is, how we code the reconciliation loop. </br>
 ### Kubernetes Operator
 It is a custom controller that extends kubernetes capabilities to manage complex applications and automate thier tasks. Operators are clients of the Kubernetes API that act as controllers for a Custom Resource.
 
@@ -28,12 +40,6 @@ A CRD stands for Custom Resource Definition, its a file that let us define our o
 6. Operator Lifecycle Manager (OLM)
 
 ## Understanding Controller
-Kubernetes controller is a control loop that watches the state of our cluster, then make changes to move the `current state` closer to the `desired state` (Reconciliation loop).
-
-<img src="./img/control-loop.png"  width="60%" height="30%">
-
-> Important thing in writing up an operator is, how we code the reconciliation loop. </br>
-
 Back bone of an operator is the `controller`. Basically a controller works as below,
 1. Start Controller
 2. Watch for changes to Custom Resources (CRs)
