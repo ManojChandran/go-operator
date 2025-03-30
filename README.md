@@ -221,7 +221,7 @@ kind delete my-cluster
 ## Testing
 To test the controller built using Kubebuilder with this Makefile, follow these steps:
 
-### Run Static Code Checks
+### 1. Run Static Code Checks
 Before running the controller, ensure that the code is formatted correctly and free from obvious issues.
 ```sh
 make fmt       # Format the code
