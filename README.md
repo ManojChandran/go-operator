@@ -6,6 +6,13 @@ We will discuss about Kubernetes Operator
 * Build from scratch
 * Installation
 
+### About me
+Manoj Chandran
+manoj.meparambu@gmail.com
+LinkedIn : http://www.linkedin.com/in/manojchandran1
+Git : https://github.com/ManojChandran
+Blog : https://medium.com/@manoj.meparambu
+
 ### Kubernetes Core
 * Heart of the kubernetes is a fleet of controllers tacking Kubernetes resources.
 * Kubernetes controller is a control loop that watches the state of our cluster, then make changes to move the `current state` closer to the `desired state`.(Reconciliation loop)
