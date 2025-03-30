@@ -8,7 +8,6 @@ We will discuss about Kubernetes Operator
 
 ### About me
 Manoj Chandran
-manoj.meparambu@gmail.com
 LinkedIn : http://www.linkedin.com/in/manojchandran1
 Git : https://github.com/ManojChandran
 Blog : https://medium.com/@manoj.meparambu
