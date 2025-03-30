@@ -121,23 +121,6 @@ Run the init command inside of it to initialize a new project, Init command will
 ```sh
 kubebuilder init --domain  devops.tools --repo devops.tools/controller
 ```
-Will create `api/v1` folder to define the API `spec` and `status`
-```go
-// ChowkiSpec defines the desired state of Chowki.
-type ChowkiSpec struct {
-	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
-
-	// Foo is an example field of Chowki. Edit chowki_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
-}
-
-// ChowkiStatus defines the observed state of Chowki.
-type ChowkiStatus struct {
-	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
-}
-```
 ### config
 All our launch configurations under the config/ directory and it contains Kustomize YAML definitions required to launch our controller on a cluster.
 * `config/default` contains a Kustomize base for launching the controller in a standard configuration.
@@ -186,7 +169,23 @@ Build API and for our, run below command.
 ```sh
 kubebuilder create api --group crd --version v1 --kind Chowki
 ```
-This will create API and Controller for our operator.
+This will create API and Controller for our operator. We can see  `api/v1` and `controller` folder created to define the API `spec`, `status` and `reconcile` function..
+```go
+// ChowkiSpec defines the desired state of Chowki.
+type ChowkiSpec struct {
+	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
+	// Important: Run "make" to regenerate code after modifying this file
+
+	// Foo is an example field of Chowki. Edit chowki_types.go to remove/update
+	Foo string `json:"foo,omitempty"`
+}
+
+// ChowkiStatus defines the observed state of Chowki.
+type ChowkiStatus struct {
+	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
+	// Important: Run "make" to regenerate code after modifying this file
+}
+```
 
 ## Set up kind cluster for running kubernetes
 Manifest file
