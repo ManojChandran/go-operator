@@ -278,3 +278,6 @@ make install
 make deploy
 ```
 > **Note:** Ensure that the Kubernetes cluster is running and accessible.
+
+## Conclusion
+Now you guys are ready to explore the kubernetes operator...good luck
