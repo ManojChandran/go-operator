@@ -277,7 +277,7 @@ make deploy
 Now you guys are ready to explore the kubernetes operator...good luck
 
 ### About me
-Manoj Chandran 
+Manoj Chandran </br>
 LinkedIn : http://www.linkedin.com/in/manojchandran1 </br>
 Git : https://github.com/ManojChandran </br>
 Blog : https://medium.com/@manoj.meparambu </br>
