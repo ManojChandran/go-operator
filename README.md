@@ -31,7 +31,7 @@ A CRD stands for Custom Resource Definition, its a file that let us define our o
 Kubernetes controller is a control loop that watches the state of our cluster, then make changes to move the `current state` closer to the `desired state` (Reconciliation loop).
 
 <img src="./img/control-loop.png"  width="60%" height="30%">
-> Important thing in writing up an operator is, how we code the reconciliation loop.
+> Important thing in writing up an operator is, how we code the reconciliation loop. </br>
 
 Back bone of an operator is the `controller`. Basically a controller works as below,
 1. Start Controller
