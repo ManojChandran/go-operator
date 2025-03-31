@@ -225,6 +225,20 @@ Cluster Deletion
 ```sh
 kind delete my-cluster
 ```
+## Access Requirement
+We need privileged, cluster-wide access to a kubernetes cluster to deploy them. We can check it by:
+```sh
+% kubectl describe clusterrole cluster-admin 
+Name:         cluster-admin
+Labels:       kubernetes.io/bootstrapping=rbac-defaults
+Annotations:  rbac.authorization.kubernetes.io/autoupdate: true
+PolicyRule:
+  Resources  Non-Resource URLs  Resource Names  Verbs
+  ---------  -----------------  --------------  -----
+  *.*        []                 []              [*]
+             [*]                []              [*]
+```
+
 ## Testing
 To test the controller built using Kubebuilder with this Makefile, follow these steps:
 
