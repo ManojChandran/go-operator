@@ -3,7 +3,7 @@ We will discuss about Kubernetes Operator
 * Basics
 * Working
 * Echo system
-* Build from scratch
+* Build from scratch using kubebuilder
 * Installation
 
 ### Kubernetes Core
