@@ -226,7 +226,7 @@ Cluster Deletion
 kind delete my-cluster
 ```
 ## Access Requirement
-We need privileged, cluster-wide access to a kubernetes cluster to deploy them. We can check it by:
+We need privileged access, cluster-wide access to a kubernetes cluster to deploy them. We can check it by:
 ```sh
 % kubectl describe clusterrole cluster-admin 
 Name:         cluster-admin
