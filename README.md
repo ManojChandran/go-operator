@@ -127,7 +127,7 @@ A Rate Limiter in a Kubernetes controller helps control the number of reconcilia
 ## Custom Controller Architecture
 <img src="./img/operator-basic.png"  width="60%" height="30%">
 
-## Lets Create one
+## Get started
 Create a github repo and clone the repo.
 ```sh
 git clone https://github.com/ManojChandran/chowki
@@ -135,7 +135,6 @@ cd chowki
 go mod init github.com/ManojChandran/chowki
 go mod tidy
 ```
-## Get started
 Run the init command inside of it to initialize a new project, Init command will create basic project structure with all the configurations for a base CRD.
 ```sh
 kubebuilder init --domain  devops.tools --repo devops.tools/controller
@@ -145,22 +144,6 @@ All our launch configurations under the config/ directory and it contains Kustom
 * `config/default` contains a Kustomize base for launching the controller in a standard configuration.
 * `config/manager` contains a Kustomize base for launching as pods in the cluster.
 * `config/rbac`    contains a Kustomize base for required permissions to run your controllers under their own service account
-
-### Makefile
-In addition to the configuration, `Makefile` does some heavy lifting for us:
-* make (Default Target)
-* make run (Run Operator Locally)
-* make manifests (Generate CRDs & RBAC)
-* make install (Apply CRDs to Cluster)
-* make build (Build Operator Binary)
-* make docker-build (Build Docker Image)
-* make docker-push (Push Image to Registry)
-* make deploy (Deploy Operator to Cluster)
-* make uninstall (Remove CRDs from Cluster)
-* make test (Run Unit Tests)
-* make fmt (Format Code)
-* make vet (Static Analysis)
-* make help (Show Available Commands)
 
 ### main.go
 Our entry point to the operator is `main.go`
@@ -241,8 +224,23 @@ PolicyRule:
 ```
 
 ## Testing
-To test the controller built using Kubebuilder with this Makefile, follow these steps:
+### Makefile
+In addition to the configuration, `Makefile` does some heavy lifting for us:
+* make (Default Target)
+* make run (Run Operator Locally)
+* make manifests (Generate CRDs & RBAC)
+* make install (Apply CRDs to Cluster)
+* make build (Build Operator Binary)
+* make docker-build (Build Docker Image)
+* make docker-push (Push Image to Registry)
+* make deploy (Deploy Operator to Cluster)
+* make uninstall (Remove CRDs from Cluster)
+* make test (Run Unit Tests)
+* make fmt (Format Code)
+* make vet (Static Analysis)
+* make help (Show Available Commands)
 
+To test the controller built using Kubebuilder with this Makefile, follow these steps:
 ### 1. Run Static Code Checks
 Before running the controller, ensure that the code is formatted correctly and free from obvious issues.
 ```sh
