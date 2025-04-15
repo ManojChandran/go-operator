@@ -16,7 +16,7 @@ An Operator adds an endpoint to the kubernets API called a custome resource (CR)
 
 ### Resource in Kubernetes
 A Resource is an endpoint in the Kubernetes API that stores a collection of API objects of a certain kind.
-* Native Resource
+* Native Resource (eg: Pod)
 * Custom Resource
 
 ### Custom Resource
