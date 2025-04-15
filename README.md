@@ -1,10 +1,5 @@
 # go-operator  
-We will discuss about Kubernetes Operator
-* Basics
-* Working
-* Echo system
-* Build from scratch using kubebuilder
-* Installation
+We will discuss about Kubernetes Operator, its basics and advance level of coding it in GO.
 
 ### Kubernetes Core
 * Heart of the kubernetes is a fleet of controllers tacking Kubernetes resources.
@@ -14,34 +9,36 @@ We will discuss about Kubernetes Operator
 
 > Important thing in writing up an operator is, how we code the reconciliation loop. </br>
 ### Kubernetes Operator
-It is a custom controller that extends kubernetes capabilities to manage complex applications and automate thier tasks. Operators are clients of the Kubernetes API that act as controllers for a Custom Resource.
+It is a `custom controller` that extends kubernetes capabilities to manage complex applications and automate thier tasks. Operators are clients of the Kubernetes API that act as controllers for a `Custom Resource`.
 
 ### Operator Working
 An Operator adds an endpoint to the kubernets API called a custome resource (CR),  along with a control plane component that monitors and maintain resource of new type.
 
 ### Resource in Kubernetes
 A Resource is an endpoint in the Kubernetes API that stores a collection of API objects of a certain kind.
+* Native Resource
+* Custom Resource
 
 ### Custom Resource
-A Custom Resource is an object that extends the Kubernetes API or allows you to introduce your own API into a project or a cluster.
+A `Custom Resource` is an object that extends the Kubernetes API or allows you to introduce your own API into a project or a cluster.
 
 ### Create the custom resourece Object
-Custom resouce objects are created by creating an object from a Custom Resource Definition (CRD).
+Custom resouce objects are created by creating an object from a `Custom Resource Definition` (CRD).
 
 ### CRD
 A CRD stands for Custom Resource Definition, its a file that let us define our own object kinds and lets the API Server handle the entire lifecycle.
 
 ### Key components of Kubernetes Operator
-1. Custom Resource Definitions (CRDs)
-2. Custom Resource (CR)
-3. Controller
+1. Custom Resource (CR)
+2. Custom Resource Definitions (CRDs)
+3. Controller 
 4. Reconciliation Loop
 5. Role-Based Access Control (RBAC)
 6. Operator Lifecycle Manager (OLM)
 
 ## Understanding Controller
 Back bone of an operator is the `controller`. Basically a controller works as below,
-1. Start Controller
+1. Start
 2. Watch for changes to Custom Resources (CRs)
 3. Enqueue events (create/update/delete)
 4. Process the queue:
@@ -49,10 +46,10 @@ Back bone of an operator is the `controller`. Basically a controller works as be
    b. Compare current state with the desired state
    c. Take corrective action (reconcile)
 5. Repeat
-We can understand controller by reffering to the code given by Kubernetes team (`sample-controller`).
+We can understand controller by reffering to the code given by Kubernetes team [Sample Controller](https://github.com/kubernetes/sample-controller).
 
 ### Sample Controller
-The [Sample Controller](https://github.com/kubernetes/sample-controller) is a Kubernetes Operator example that demonstrates how to write a custom controller using the Kubernetes client-go library.
+The `Sample Controller` is a Kubernetes Operator example that demonstrates how to write a custom controller using the Kubernetes client-go library.
 ### NewController
 * Takes Kubernetes clientset, custom resource clientset, shared informer, and workqueue as inputs.
 * Initializes and returns a new Controller instance.
