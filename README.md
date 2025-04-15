@@ -30,6 +30,7 @@ kubectl api-resources
 kubectl api-versions
 kubectl get --raw /apis |jq '.'  # api resources with versions
 ```
+> For deaper reference, check GO types: GroupVersion(GV), GroupResource(GR), GroupKind(GK), GroupVersionResource(GVR), GroupVersionKind(GVK)
 ### Resource Type
 * Native Resource (eg: Pod)
 * Custom Resource
@@ -153,7 +154,6 @@ Our entry point to the operator is `main.go`
 * Scheme, which provides mappings between Kinds and their corresponding Go types.
 * Basic health checks
 
-> Go types: GroupVersion(GV), GroupResource(GR), GroupKind(GK), GroupVersionResource(GVR), GroupVersionKind(GVK)
 ### Custom API
 
 Build API and for our, run below command.
