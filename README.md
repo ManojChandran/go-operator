@@ -107,7 +107,7 @@ An Informer in Kubernetes is a key component of the controller pattern. It is re
 * Event Notification
 * Reconciliation trigger
 
-#### RateLimiter
+### RateLimiter
 A Rate Limiter in a Kubernetes controller helps control the number of reconciliation attempts to avoid overwhelming the API server or the managed resources. 
 
 ## Custom Controller Architecture
