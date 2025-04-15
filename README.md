@@ -46,6 +46,7 @@ Back bone of an operator is the `controller`. Basically a controller works as be
    * Compare current state with the desired state
    * Take corrective action (reconcile)
 5. Repeat
+
 We can understand controller by reffering to the code given by Kubernetes team [Sample Controller](https://github.com/kubernetes/sample-controller).
 
 ### Sample Controller
