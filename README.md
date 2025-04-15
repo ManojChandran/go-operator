@@ -16,9 +16,23 @@ An Operator adds an endpoint to the kubernets API called a custome resource (CR)
 
 ### Resource in Kubernetes
 A Resource is an endpoint in the Kubernetes API that stores a collection of API objects of a certain kind.
+
+### Kubernetes API
+Determine group/version for our API.
+* Kind - A schema for an object, mapping to a Go type (Capital Letters). 
+* Resource - An HTTP enpoint/Path (Lower case plurals)
+* Group -  A set of resources that are exposed together
+* Version - Unique versions to a group
+
+> API Endpoint - /apis/apps/v1/namespaces/default/deployemnts/nginx
+```sh
+kubectl api-resources
+kubectl api-versions
+kubectl get --raw /apis |jq '.'  # api resources with versions
+```
+### Resource Type
 * Native Resource (eg: Pod)
 * Custom Resource
-
 ### Custom Resource
 A `Custom Resource` is an object that extends the Kubernetes API or allows you to introduce your own API into a project or a cluster.
 
@@ -157,19 +171,8 @@ Our entry point to the operator is `main.go`
 * Basic health checks
 
 > Go types: GroupVersion(GV), GroupResource(GR), GroupKind(GK), GroupVersionResource(GVR), GroupVersionKind(GVK)
-### Kubernetes API
-Determine group/version for our API.
-* Kind - A schema for an object, mapping to a Go type (Capital Letters). 
-* Resource - An HTTP enpoint/Path (Lower case plurals)
-* Group -  A set of resources that are exposed together
-* Version - Unique versions to a group
+### Custom API
 
-> API Endpoint - /apis/apps/v1/namespaces/default/deployemnts/nginx
-```sh
-kubectl api-resources
-kubectl api-versions
-kubectl get --raw /apis |jq '.'  # api resources with versions
-```
 Build API and for our, run below command.
 ```sh
 kubebuilder create api --group crd --version v1 --kind Chowki
