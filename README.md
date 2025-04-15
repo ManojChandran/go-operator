@@ -42,9 +42,9 @@ Back bone of an operator is the `controller`. Basically a controller works as be
 2. Watch for changes to Custom Resources (CRs)
 3. Enqueue events (create/update/delete)
 4. Process the queue:
-   a. Fetch the object from the API
-   b. Compare current state with the desired state
-   c. Take corrective action (reconcile)
+   * Fetch the object from the API
+   * Compare current state with the desired state
+   * Take corrective action (reconcile)
 5. Repeat
 We can understand controller by reffering to the code given by Kubernetes team [Sample Controller](https://github.com/kubernetes/sample-controller).
 
