@@ -30,7 +30,7 @@ kubectl api-resources
 kubectl api-versions
 kubectl get --raw /apis |jq '.'  # api resources with versions
 ```
-> For deaper reference, check GO types: GroupVersion(GV), GroupResource(GR), GroupKind(GK), GroupVersionResource(GVR), GroupVersionKind(GVK)
+> For deeper reference, check GO types: GroupVersion(GV), GroupResource(GR), GroupKind(GK), GroupVersionResource(GVR), GroupVersionKind(GVK)
 ### Resource Type
 * Native Resource (eg: Pod)
 * Custom Resource
@@ -38,7 +38,7 @@ kubectl get --raw /apis |jq '.'  # api resources with versions
 A `Custom Resource` is an object that extends the Kubernetes API or allows you to introduce your own API into a project or a cluster.
 
 ### Create the custom resourece Object
-Custom resouce objects are created by creating an object from a `Custom Resource Definition` (CRD).
+Custom resource objects are created by creating an object from a `Custom Resource Definition` (CRD).
 
 ### CRD
 A CRD stands for Custom Resource Definition, its a file that let us define our own object kinds and lets the API Server handle the entire lifecycle.
