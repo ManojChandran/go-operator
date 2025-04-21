@@ -129,6 +129,11 @@ A Rate Limiter in a Kubernetes controller helps control the number of reconcilia
 <img src="./img/operator-basic.png"  width="60%" height="30%">
 
 ## Get started
+
+We can create an operator using Helm, Ansible and Go. Below image shows the capability level of building operator with each method. In this talk we are mostly concentrating on building an operator in GO.
+
+<img src="./img/operator-capability-level.png"  width="60%" height="30%">
+
 Create a github repo and clone the repo.
 ```sh
 git clone https://github.com/ManojChandran/chowki
